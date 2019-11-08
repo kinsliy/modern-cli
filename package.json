@@ -1,0 +1,31 @@
+{
+  "name": "modern-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kinsliy/modern-cli.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "kinsliy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kinsliy/modern-cli/issues"
+  },
+  "homepage": "https://github.com/kinsliy/modern-cli#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^4.0.0",
+    "fs-extra": "^8.1.0",
+    "inquirer": "^7.0.0"
+  },
+  "bin": {
+    "modern-cli": "./src/main.js"
+  }
+}
