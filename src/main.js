@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const program = require("commander");
-
+const path = require('path');
 const { version } = require("../utils/constants");
 
 const actionsMap = {
@@ -9,13 +9,13 @@ const actionsMap = {
     // 创建模板
     description: "create project",
     alias: "cr",
-    examples: ["quick-cli create <template-name>"]
+    examples: ["modern-cli create <template-name>"]
   },
   config: {
     // 配置配置文件
     description: "config info",
     alias: "c",
-    examples: ["quick-cli config get <k>", "quick-cli config set <k> <v>"]
+    examples: ["modern-cli config get <k>", "modern-cli config set <k> <v>"]
   },
   "*": {
     description: "command not found"
@@ -29,7 +29,11 @@ Object.keys(actionsMap).forEach(action => {
     .description(actionsMap[action].description) // 命令的描述
     .action(() => {
       // 动作
-      console.log(action);
+      if (action === '*') { // 如果动作没匹配到说明输入有误
+        console.log(acitonMap[action].description);
+      } else { // 引用对应的动作文件 将参数传入
+        require(path.resolve(__dirname, action))(...process.argv.slice(3));
+      }
     });
 });
 
@@ -43,3 +47,7 @@ program.on("--help", () => {
     });
   });
 });
+
+if(!program.args.length){
+    program.help()
+  }
